@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Products</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <header>
+
+        <h1>
+            Manage Products
+        </h1>
+
+
+        <nav id="admin-navbar">
+
+            <a href="/admin-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="/admin-products.html">
+                Products
+            </a>
+
+            <a href="/admin-orders.html">
+                Orders
+            </a>
+
+            <a href="/">
+                Store
+            </a>
+
+            <button id="logout-button">
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <div class="admin-page-header">
+
+            <h2>
+                Products
+            </h2>
+
+
+            <a
+                href="/admin-add-product.html"
+                class="admin-add-button"
+            >
+                + Add Product
+            </a>
+
+        </div>
+
+
+        <p id="products-message">
+            Loading products...
+        </p>
+
+
+        <div
+            id="admin-products-list"
+            class="admin-products-grid"
+        >
+
+        </div>
+
+    </main>
+
+
+    <script src="/js/admin-auth.js"></script>
+
+    <script src="/js/admin-products.js"></script>
+
+</body>
+
+</html>

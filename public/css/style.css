@@ -1,3 +1,7 @@
+/* =========================
+   GLOBAL
+========================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -20,8 +24,13 @@ header {
     align-items: center;
 }
 
+header h1 {
+    font-size: 28px;
+}
+
 nav {
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 
@@ -30,21 +39,100 @@ nav a {
     text-decoration: none;
 }
 
+nav a:hover {
+    text-decoration: underline;
+}
+
+nav button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
 main {
     padding: 40px 50px;
 }
 
-#product-container {
-    margin-top: 30px;
+
+/* =========================
+   PRODUCT CONTROLS
+========================= */
+
+.product-controls {
+    display: flex;
+
+    gap: 15px;
+
+    margin: 30px 0;
+
+    padding: 20px;
+
+    background-color: white;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    flex-wrap: wrap;
 }
+
+.product-controls input,
+.product-controls select {
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+.product-controls input:focus,
+.product-controls select:focus {
+    border-color: #555;
+}
+
+.product-controls input {
+    flex: 1;
+
+    min-width: 220px;
+}
+
+.product-controls select {
+    min-width: 180px;
+
+    background-color: white;
+}
+
+
+/* =========================
+   PRODUCT LIST
+========================= */
 
 #product-container {
     margin-top: 30px;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
     gap: 25px;
 }
+
+
+/* =========================
+   PRODUCT CARD
+========================= */
 
 .product-card {
     background-color: white;
@@ -53,11 +141,28 @@ main {
 
     border-radius: 10px;
 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.1);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
 .product-card img {
     width: 100%;
+
     height: 200px;
 
     object-fit: cover;
@@ -67,15 +172,21 @@ main {
 
 .product-card h3 {
     margin-top: 15px;
+
     margin-bottom: 10px;
+
+    font-size: 20px;
 }
 
 .product-card p {
     margin-bottom: 10px;
+
+    line-height: 1.5;
 }
 
 .product-card .price {
     font-size: 20px;
+
     font-weight: bold;
 }
 
@@ -83,18 +194,40 @@ main {
     padding: 10px 15px;
 
     margin-top: 10px;
+
     margin-right: 5px;
 
     border: none;
+
     border-radius: 5px;
 
     cursor: pointer;
+
+    font-size: 14px;
+
+    transition: opacity 0.2s ease;
 }
+
+.product-card button:hover {
+    opacity: 0.8;
+}
+
+.product-card button:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.5;
+}
+
+
+/* =========================
+   PRODUCT DETAILS
+========================= */
 
 .product-detail {
     margin-top: 30px;
 
     display: grid;
+
     grid-template-columns: 1fr 1fr;
 
     gap: 50px;
@@ -108,6 +241,7 @@ main {
 
 .product-detail img {
     width: 100%;
+
     max-width: 500px;
 
     border-radius: 10px;
@@ -119,12 +253,15 @@ main {
 
 .product-detail h3 {
     font-size: 28px;
+
     margin: 20px 0;
 }
 
 .product-detail input {
     width: 70px;
+
     padding: 8px;
+
     margin: 15px 0;
 }
 
@@ -132,11 +269,16 @@ main {
     padding: 12px 20px;
 
     border: none;
+
     border-radius: 5px;
 
     cursor: pointer;
 }
 
+
+/* =========================
+   CART
+========================= */
 
 .cart-item {
     display: flex;
@@ -154,6 +296,7 @@ main {
 
 .cart-item img {
     width: 150px;
+
     height: 150px;
 
     object-fit: cover;
@@ -204,6 +347,10 @@ main {
 }
 
 
+/* =========================
+   AUTH
+========================= */
+
 .auth-container {
     max-width: 450px;
 
@@ -215,7 +362,8 @@ main {
 
     border-radius: 10px;
 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .auth-container h2 {
@@ -250,4 +398,1193 @@ main {
     border-radius: 5px;
 
     cursor: pointer;
+}
+
+
+/* =========================
+   USER / NAVBAR
+========================= */
+
+.user-greeting {
+    margin-left: 10px;
+
+    font-weight: 500;
+}
+
+#logout-button {
+    padding: 8px 14px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   CHECKOUT
+========================= */
+
+#checkout-container {
+    display: flex;
+
+    gap: 30px;
+
+    margin-top: 30px;
+}
+
+.checkout-form,
+.checkout-summary {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+}
+
+.checkout-form {
+    flex: 1;
+}
+
+.checkout-summary {
+    flex: 1;
+}
+
+.checkout-form > div {
+    margin-bottom: 20px;
+}
+
+.checkout-form label {
+    display: block;
+
+    margin-bottom: 8px;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+    width: 100%;
+
+    padding: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    box-sizing: border-box;
+}
+
+.checkout-form textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+.checkout-form button {
+    padding: 12px 20px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   ORDER SUCCESS
+========================= */
+
+#order-success {
+    max-width: 800px;
+
+    margin: 50px auto;
+
+    text-align: center;
+}
+
+.order-card {
+    background-color: white;
+
+    padding: 30px;
+
+    margin-top: 30px;
+
+    border-radius: 10px;
+
+    text-align: left;
+}
+
+.order-item {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.order-actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    margin-top: 30px;
+}
+
+.order-actions a {
+    text-decoration: none;
+
+    padding: 10px 20px;
+
+    border-radius: 5px;
+}
+
+
+/* =========================
+   ORDERS
+========================= */
+
+.orders-container {
+    max-width: 900px;
+
+    margin: 40px auto;
+
+    padding: 20px;
+}
+
+.order-list-card {
+    background-color: white;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-list-card h3 {
+    margin-top: 0;
+}
+
+.order-list-item {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.order-list-card a {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 10px 15px;
+
+    text-decoration: none;
+
+    border-radius: 5px;
+}
+
+
+/* =========================
+   RESPONSIVE - TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    header {
+        padding: 20px 30px;
+    }
+
+    main {
+        padding: 30px;
+    }
+
+    .product-detail {
+        gap: 30px;
+    }
+
+}
+
+
+/* =========================
+   RESPONSIVE - MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 15px 20px;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 12px;
+    }
+
+    main {
+        padding: 25px 20px;
+    }
+
+
+    /* Product controls */
+
+    .product-controls {
+        flex-direction: column;
+
+        padding: 15px;
+    }
+
+    .product-controls input,
+    .product-controls select {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+
+    /* Product details */
+
+    .product-detail {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+
+        padding: 20px;
+    }
+
+    .product-detail img {
+        max-width: 100%;
+    }
+
+
+    /* Cart */
+
+    .cart-item {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .cart-item img {
+        width: 100%;
+
+        max-width: 250px;
+
+        height: 200px;
+    }
+
+
+    /* Checkout */
+
+    #checkout-container {
+        flex-direction: column;
+    }
+
+
+    /* Orders */
+
+    .orders-container {
+        margin: 20px auto;
+
+        padding: 10px;
+    }
+
+    .order-list-card {
+        padding: 20px;
+    }
+
+    .order-list-item {
+        gap: 10px;
+    }
+
+
+    /* Order actions */
+
+    .order-actions {
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+}
+
+/* =========================
+   ORDER STATUS
+========================= */
+
+.order-status {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    margin-left: 5px;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.status-processing {
+    background-color: #fff3cd;
+
+    color: #856404;
+}
+
+.status-shipped {
+    background-color: #cfe2ff;
+
+    color: #084298;
+}
+
+.status-delivered {
+    background-color: #d1e7dd;
+
+    color: #0f5132;
+}
+
+.status-cancelled {
+    background-color: #f8d7da;
+
+    color: #842029;
+}
+/* =========================
+   ORDER TIMELINE
+========================= */
+
+.order-timeline {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin: 25px 0;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+.timeline-step {
+    position: relative;
+
+    padding: 8px 15px;
+
+    border-radius: 20px;
+
+    background-color: #e9ecef;
+
+    color: #666;
+
+    font-size: 14px;
+}
+
+.timeline-step.active {
+    background-color: #222;
+
+    color: white;
+}
+
+.timeline-step.cancelled {
+    background-color: #f8d7da;
+
+    color: #842029;
+}
+
+/* =========================
+   ADMIN DASHBOARD
+========================= */
+
+.admin-container {
+    max-width: 1100px;
+
+    margin: 40px auto;
+
+    padding: 20px;
+}
+
+.admin-container h2 {
+    margin-bottom: 15px;
+}
+
+.admin-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px, 1fr)
+        );
+
+    gap: 20px;
+
+    margin-top: 30px;
+}
+
+.admin-card {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.1);
+
+    text-align: center;
+}
+
+.admin-card h3 {
+    margin-bottom: 15px;
+}
+
+.admin-card p {
+    font-size: 32px;
+
+    font-weight: bold;
+}
+
+.admin-section {
+    background-color: white;
+
+    padding: 25px;
+
+    margin-top: 30px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.1);
+}
+
+.admin-section button {
+    padding: 10px 18px;
+
+    margin-top: 15px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+#admin-navbar {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+/* =========================
+   ADMIN PRODUCT FORM
+========================= */
+
+#product-form-container {
+    margin-top: 25px;
+
+    padding: 25px;
+
+    background-color: #f5f5f5;
+
+    border-radius: 10px;
+}
+
+#product-form {
+    margin-top: 20px;
+}
+
+#product-form > div {
+    margin-bottom: 18px;
+}
+
+#product-form label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: 500;
+}
+
+#product-form input,
+#product-form textarea {
+    width: 100%;
+
+    padding: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    font-size: 15px;
+}
+
+#product-form textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+#product-form button {
+    padding: 10px 18px;
+
+    margin-right: 10px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+#product-message {
+    margin-top: 15px;
+
+    font-weight: 500;
+}
+/* =========================
+   ADMIN PRODUCT LIST
+========================= */
+
+.admin-product-list {
+    margin-top: 30px;
+}
+
+.admin-product-list h3 {
+    margin-bottom: 20px;
+}
+
+#admin-products {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 20px;
+}
+
+.admin-product-card {
+    display: flex;
+
+    gap: 15px;
+
+    background-color: white;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.1);
+}
+
+.admin-product-card img {
+    width: 100px;
+
+    height: 100px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+}
+
+.admin-product-info {
+    flex: 1;
+}
+
+.admin-product-info h4 {
+    margin-top: 0;
+
+    margin-bottom: 10px;
+}
+
+.admin-product-info p {
+    margin-bottom: 7px;
+
+    font-size: 14px;
+}
+
+/* =========================
+   EDIT PRODUCT FORM
+========================= */
+
+#edit-product-form {
+    margin-bottom: 30px;
+}
+
+.edit-form-box {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.1);
+}
+
+.edit-form-box h3 {
+    margin-bottom: 20px;
+}
+
+#update-product-form > div {
+    margin-bottom: 18px;
+}
+
+#update-product-form label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: 500;
+}
+
+#update-product-form input,
+#update-product-form textarea {
+    width: 100%;
+
+    padding: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    font-size: 15px;
+}
+
+#update-product-form textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+#update-product-form button,
+.edit-product-button {
+    padding: 9px 15px;
+
+    margin-top: 8px;
+
+    margin-right: 8px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+.admin-product-actions {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 12px;
+}
+
+.delete-product-button {
+    padding: 9px 15px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+/* =========================
+   ADMIN ORDERS
+========================= */
+
+.admin-orders {
+    margin-top: 50px;
+}
+
+.admin-orders > h2 {
+    margin-bottom: 25px;
+}
+
+#admin-orders {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.admin-order-card {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.1);
+}
+
+.admin-order-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.admin-order-header h3 {
+    margin: 0;
+
+    word-break: break-all;
+}
+
+.order-status {
+    padding: 6px 12px;
+
+    border-radius: 5px;
+
+    background-color: #eee;
+
+    font-size: 14px;
+}
+
+.admin-customer,
+.admin-shipping {
+    margin-top: 20px;
+}
+
+.admin-customer p,
+.admin-shipping p {
+    margin: 7px 0;
+}
+
+.admin-order-items {
+    margin-top: 25px;
+}
+
+.admin-order-items h4,
+.admin-shipping h4 {
+    margin-bottom: 12px;
+}
+
+.admin-order-item {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-order-total {
+    margin-top: 20px;
+
+    font-size: 18px;
+}
+
+.admin-order-date {
+    margin-top: 20px;
+
+    color: #666;
+
+    font-size: 14px;
+}
+.order-status-select {
+    padding: 8px 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.customer-order-status {
+    margin: 15px 0;
+}
+
+.customer-order-status span {
+    display: inline-block;
+
+    margin-left: 8px;
+
+    padding: 6px 12px;
+
+    border-radius: 5px;
+
+    font-weight: bold;
+}
+
+.status-processing {
+    background-color: #fff3cd;
+}
+
+.status-shipped {
+    background-color: #cfe2ff;
+}
+
+.status-delivered {
+    background-color: #d1e7dd;
+}
+
+.status-cancelled {
+    background-color: #f8d7da;
+}
+
+.admin-order-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.admin-order-actions select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.admin-order-actions button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.order-status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.status-processing {
+    background-color: #fff3cd;
+}
+
+.status-shipped {
+    background-color: #cfe2ff;
+}
+
+.status-delivered {
+    background-color: #d1e7dd;
+}
+
+.status-cancelled {
+    background-color: #f8d7da;
+}
+/* =========================
+   ADMIN DASHBOARD
+========================= */
+
+.dashboard-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(200px, 1fr)
+        );
+
+    gap: 20px;
+
+    margin-top: 30px;
+}
+
+
+.dashboard-card {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.1);
+
+    text-align: center;
+}
+
+
+.dashboard-card h3 {
+    margin-bottom: 15px;
+}
+
+
+.dashboard-card p {
+    font-size: 30px;
+
+    font-weight: bold;
+}
+
+
+.dashboard-status {
+    margin-top: 40px;
+}
+
+
+.status-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(180px, 1fr)
+        );
+
+    gap: 20px;
+
+    margin-top: 20px;
+}
+
+
+.status-card {
+    background-color: white;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.1);
+
+    text-align: center;
+}
+
+
+.status-card p {
+    font-size: 25px;
+
+    font-weight: bold;
+
+    margin-top: 10px;
+}
+
+
+#dashboard-message {
+    margin-top: 20px;
+}
+
+/* =========================
+   ADMIN PAGE HEADER
+========================= */
+
+.admin-page-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+    gap: 20px;
+}
+
+.admin-add-button {
+    display: inline-block;
+
+    padding: 10px 18px;
+
+    background-color: #222;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 5px;
+
+    font-weight: bold;
+}
+
+.admin-add-button:hover {
+    opacity: 0.85;
+}
+
+/* =========================
+   ADMIN PRODUCTS
+========================= */
+
+.admin-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 20px;
+}
+
+.admin-add-button {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #222;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.admin-add-button:hover {
+    opacity: 0.85;
+}
+
+.admin-products-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 1fr)
+    );
+    gap: 25px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.admin-product-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.1);
+
+    min-width: 0;
+    overflow: hidden;
+}
+
+.admin-product-card img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.admin-product-card h3,
+.admin-product-card p {
+    overflow-wrap: break-word;
+    word-break: normal;
+    white-space: normal;
+    line-height: 1.5;
+}
+
+.admin-product-card h3 {
+    margin-bottom: 10px;
+}
+
+.admin-product-card p {
+    margin-bottom: 10px;
+}
+
+.admin-product-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.admin-product-actions a {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #222;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+/* =========================
+   FIX ADMIN PRODUCT CARD
+========================= */
+
+.admin-product-card {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.admin-product-card h3,
+.admin-product-card p {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.admin-product-card img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+.admin-product-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.admin-product-actions a {
+    white-space: nowrap;
+}
+body {
+    overflow-x: hidden;
+}
+.admin-product-actions button {
+    display: inline-block;
+
+    padding: 8px 15px;
+
+    background-color: #222;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.admin-product-actions button:hover {
+    opacity: 0.85;
 }

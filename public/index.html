@@ -14,7 +14,7 @@
     <header>
         <h1>Simple Store</h1>
 
-        <nav>
+        <nav id="navbar">
             <a href="/">Home</a>
             <a href="/cart.html">Cart</a>
             <a href="/login.html">Login</a>
@@ -25,11 +25,35 @@
     <main>
         <h2>Products</h2>
 
+
+        <section class="product-controls">
+
+    <input
+        type="text"
+        id="search-input"
+        placeholder="Search products..."
+    >
+
+    <select id="category-filter">
+        <option value="all">All Categories</option>
+    </select>
+
+    <select id="sort-products">
+        <option value="default">Sort By</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+        <option value="name">Name: A to Z</option>
+    </select>
+
+</section>
+
         <div id="product-container">
             <p>Loading products...</p>
         </div>
+        
     </main>
 
+    <script src="/js/auth.js"></script>
     <script src="/js/main.js"></script>
 
 </body>

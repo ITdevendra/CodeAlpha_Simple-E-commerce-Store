@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard - Simple Store</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <header>
+
+        <h1>
+            Simple Store Admin
+        </h1>
+
+        <nav id="admin-navbar">
+
+            <a href="/">
+                Store
+            </a>
+
+            <button id="admin-logout">
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="admin-container">
+
+            <h2>
+                Admin Dashboard
+            </h2>
+
+
+            <p id="admin-welcome">
+                Checking authentication...
+            </p>
+
+
+            <div
+                id="admin-content"
+                style="display: none;"
+            >
+
+                <div class="admin-cards">
+
+                    <div class="admin-card">
+
+                        <h3>
+                            Products
+                        </h3>
+
+                        <p id="product-count">
+                            0
+                        </p>
+
+                    </div>
+
+
+                    <div class="admin-card">
+
+                        <h3>
+                            Orders
+                        </h3>
+
+                        <p id="order-count">
+                            0
+                        </p>
+
+                    </div>
+
+
+                    <div class="admin-card">
+
+                        <h3>
+                            Users
+                        </h3>
+
+                        <p id="user-count">
+                            0
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <section class="admin-section">
+
+    <h2>
+        Product Management
+    </h2>
+
+    <button id="add-product-button">
+        Add Product
+    </button>
+
+
+    <div
+        id="product-form-container"
+        style="display: none;"
+    >
+
+        <h3>
+            Add New Product
+        </h3>
+
+
+        <form id="product-form">
+
+            <div>
+                <label for="product-name">
+                    Product Name
+                </label>
+
+                <input
+                    type="text"
+                    id="product-name"
+                    required
+                >
+            </div>
+            <section class="admin-orders">
+
+    <h2>
+        Order Management
+    </h2>
+
+    <div id="admin-orders">
+
+        <p>
+            Loading orders...
+        </p>
+
+    </div>
+
+</section>
+
+
+            <div>
+                <label for="product-description">
+                    Description
+                </label>
+
+                <textarea
+                    id="product-description"
+                    required
+                ></textarea>
+            </div>
+
+
+            <div>
+                <label for="product-price">
+                    Price
+                </label>
+
+                <input
+                    type="number"
+                    id="product-price"
+                    min="0"
+                    required
+                >
+            </div>
+
+
+            <div>
+                <label for="product-image">
+                    Image URL
+                </label>
+
+                <input
+                    type="text"
+                    id="product-image"
+                    required
+                >
+            </div>
+
+
+            <div>
+                <label for="product-category">
+                    Category
+                </label>
+
+                <input
+                    type="text"
+                    id="product-category"
+                    required
+                >
+            </div>
+
+
+            <div>
+                <label for="product-stock">
+                    Stock
+                </label>
+
+                <input
+                    type="number"
+                    id="product-stock"
+                    min="0"
+                    required
+                >
+            </div>
+
+
+            <button type="submit">
+                Create Product
+            </button>
+
+            <button
+                type="button"
+                id="cancel-product-button"
+            >
+                Cancel
+            </button>
+
+        </form>
+
+        <div class="admin-product-list">
+
+    <h3>
+        Existing Products
+    </h3>
+
+    <div id="admin-products">
+
+        <p>
+            Loading products...
+        </p>
+
+    </div>
+
+</div>
+
+
+
+
+        <p id="product-message"></p>
+
+    </div>
+
+</section>
+
+
+                <section class="admin-section">
+
+                    <h2>
+                        Order Management
+                    </h2>
+
+                    <p>
+                        Order management will be added next.
+                    </p>
+
+                </section>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="/js/admin-auth.js"></script>
+    <script src="/js/admin.js"></script>
+
+</body>
+
+</html>

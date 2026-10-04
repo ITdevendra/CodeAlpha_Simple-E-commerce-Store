@@ -4,6 +4,9 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const protect = require("../middleware/authMiddleware");
 
+const adminOnly =
+    require("../middleware/adminMiddleware");
+
 const router = express.Router();
 
 // Register user
@@ -175,4 +178,18 @@ router.post("/logout", (req, res) => {
     });
 });
 
+// Test admin access
+router.get(
+    "/admin-test",
+    protect,
+    adminOnly,
+    (req, res) => {
+
+        res.json({
+            message: "Admin access granted",
+            admin: req.admin
+        });
+
+    }
+);
 module.exports = router;

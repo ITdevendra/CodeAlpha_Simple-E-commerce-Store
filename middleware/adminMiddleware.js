@@ -1,0 +1,36 @@
+const User = require("../models/User");
+
+async function adminOnly(req, res, next) {
+
+    try {
+
+        const user = await User.findById(req.user)
+            .select("-password");
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        if (user.role !== "admin") {
+            return res.status(403).json({
+                message: "Access denied. Admin only."
+            });
+        }
+
+        req.admin = user;
+
+        next();
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            message: "Admin authorization failed"
+        });
+    }
+}
+
+module.exports = adminOnly;

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout - Simple Store</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Simple Store</h1>
+
+        <nav id="navbar">
+            <a href="/">Home</a>
+            <a href="/cart.html">Cart</a>
+            <a href="/login.html">Login</a>
+            <a href="/register.html">Register</a>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <h2>Checkout</h2>
+
+        <div id="checkout-container">
+
+            <div class="checkout-form">
+
+                <h3>Shipping Address</h3>
+
+                <form id="checkout-form">
+
+                    <div>
+                        <label for="fullName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            required
+                        >
+                    </div>
+
+
+                    <div>
+                        <label for="address">
+                            Address
+                        </label>
+
+                        <textarea
+                            id="address"
+                            required
+                        ></textarea>
+                    </div>
+
+
+                    <div>
+                        <label for="city">
+                            City
+                        </label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            required
+                        >
+                    </div>
+
+
+                    <div>
+                        <label for="pincode">
+                            Pincode
+                        </label>
+
+                        <input
+                            type="text"
+                            id="pincode"
+                            required
+                        >
+                    </div>
+
+
+                    <button type="submit">
+                        Place Order
+                    </button>
+
+                </form>
+
+                <p id="checkout-message"></p>
+
+            </div>
+
+
+            <div class="checkout-summary">
+
+                <h3>Order Summary</h3>
+
+                <div id="checkout-items"></div>
+
+                <h3 id="checkout-total">
+                    Total: ₹0
+                </h3>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/checkout.js"></script>
+
+</body>
+
+</html>

@@ -1,80 +1,187 @@
-const productDetails = document.getElementById("product-details");
+const productDetails =
+    document.getElementById("product-details");
 
 let currentProduct = null;
 
+
 // Get product ID from URL
-const params = new URLSearchParams(window.location.search);
-const productId = params.get("id");
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const productId =
+    params.get("id");
+
+
+// =========================
+// GET CURRENT USER
+// =========================
+
+async function getCurrentUser() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/auth/me",
+                {
+                    credentials: "include"
+                }
+            );
+
+        if (!response.ok) {
+            return null;
+        }
+
+        const data =
+            await response.json();
+
+        return data.user;
+
+    } catch (error) {
+
+        console.error(
+            "Failed to get user:",
+            error
+        );
+
+        return null;
+    }
+}
+
+
+// =========================
+// LOAD PRODUCT
+// =========================
 
 async function loadProduct() {
 
     if (!productId) {
-        productDetails.innerHTML = "<p>Product ID is missing.</p>";
+
+        productDetails.innerHTML =
+            "<p>Product ID is missing.</p>";
+
         return;
     }
 
+
     try {
 
-        const response = await fetch(`/api/products/${productId}`);
+        const response =
+            await fetch(
+                `/api/products/${productId}`
+            );
+
 
         if (!response.ok) {
-            throw new Error("Product not found");
+
+            throw new Error(
+                "Product not found"
+            );
         }
 
-        const product = await response.json();
-        currentProduct = product;
+
+        const product =
+            await response.json();
+
+
+        currentProduct =
+            product;
+
+
         displayProduct(product);
+
 
     } catch (error) {
 
         console.error(error);
 
+
         productDetails.innerHTML = `
-            <p>Unable to load product.</p>
+            <p>
+                Unable to load product.
+            </p>
         `;
     }
 }
 
+
+// =========================
+// DISPLAY PRODUCT
+// =========================
+
 function displayProduct(product) {
 
     productDetails.innerHTML = `
+
         <div class="product-detail">
 
             <div>
-                <img 
-                    src="${product.image}" 
+
+                <img
+                    src="${product.image}"
                     alt="${product.name}"
                 >
+
             </div>
+
 
             <div>
 
-                <p>${product.category}</p>
+                <p>
+                    ${product.category}
+                </p>
 
-                <h2>${product.name}</h2>
 
-                <p>${product.description}</p>
+                <h2>
+                    ${product.name}
+                </h2>
 
-                <h3>₹${product.price}</h3>
 
-                <p>Available stock: ${product.stock}</p>
+                <p>
+                    ${product.description}
+                </p>
+
+
+                <h3>
+                    ₹${product.price}
+                </h3>
+
+
+                <p>
+                    Available stock:
+                    ${product.stock}
+                </p>
+
 
                 <label for="quantity">
                     Quantity:
                 </label>
 
-                <input 
+
+                <input
                     type="number"
                     id="quantity"
                     value="1"
                     min="1"
                     max="${product.stock}"
+                    ${product.stock === 0 ? "disabled" : ""}
                 >
+
 
                 <br>
 
-                <button onclick="addToCart('${product._id}')">
-                    Add to Cart
+
+                <button
+                    onclick="addToCart('${product._id}')"
+                    ${product.stock === 0 ? "disabled" : ""}
+                >
+                    ${
+                        product.stock === 0
+                            ? "Out of Stock"
+                            : "Add to Cart"
+                    }
                 </button>
 
             </div>
@@ -83,44 +190,138 @@ function displayProduct(product) {
     `;
 }
 
-function addToCart(productId) {
 
-    const quantity = Number(
-        document.getElementById("quantity").value
-    );
+// =========================
+// ADD TO CART
+// =========================
 
-    const cart = JSON.parse(
-        localStorage.getItem("cart")
-    ) || [];
+async function addToCart(productId) {
 
-    const existingItem = cart.find(
-        item => item.id === productId
-    );
+    const user =
+        await getCurrentUser();
+
+
+    // User must be logged in
+    if (!user) {
+
+        alert(
+            "Please login to add products to cart."
+        );
+
+        window.location.href =
+            "/login.html";
+
+        return;
+    }
+
+
+    const quantityInput =
+        document.getElementById(
+            "quantity"
+        );
+
+
+    const quantity =
+        Number(quantityInput.value);
+
+
+    // Validate quantity
+    if (
+        !quantity ||
+        quantity < 1
+    ) {
+
+        alert(
+            "Please enter a valid quantity."
+        );
+
+        return;
+    }
+
+
+    // Check stock
+    if (
+        quantity >
+        currentProduct.stock
+    ) {
+
+        alert(
+            `Only ${currentProduct.stock} item(s) available.`
+        );
+
+        return;
+    }
+
+
+    // User-specific cart key
+    const cartKey =
+        `cart_${user._id}`;
+
+
+    const cart =
+        JSON.parse(
+            localStorage.getItem(cartKey)
+        ) || [];
+
+
+    // Check existing product
+    const existingItem =
+        cart.find(
+            item => item.id === productId
+        );
+
 
     if (existingItem) {
 
-        existingItem.quantity += quantity;
+        if (
+            existingItem.quantity +
+            quantity >
+            currentProduct.stock
+        ) {
+
+            alert(
+                `Only ${currentProduct.stock} item(s) available in total.`
+            );
+
+            return;
+        }
+
+
+        existingItem.quantity +=
+            quantity;
 
     } else {
 
         cart.push({
-            id: currentProduct._id,
-            name: currentProduct.name,
-            price: currentProduct.price,
-            image: currentProduct.image,
-            quantity: quantity
-        });
 
+            id: currentProduct._id,
+
+            name: currentProduct.name,
+
+            price: currentProduct.price,
+
+            image: currentProduct.image,
+
+            quantity: quantity
+
+        });
     }
 
+
     localStorage.setItem(
-        "cart",
+        cartKey,
         JSON.stringify(cart)
     );
 
-    alert("Product added to cart!");
 
-    window.location.href = "/cart.html";
+    alert(
+        "Product added to cart!"
+    );
+
+
+    window.location.href =
+        "/cart.html";
 }
+
 
 loadProduct();
